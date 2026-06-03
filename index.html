@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>May 2026 Churn Report — Hugh Roberts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #F7F6F4;
+    --surface-bg: #FFFFFF;
+    --text-primary: #2A2A28;
+    --text-secondary: #5A5955;
+    --text-mute: #9B9A96;
+    --divider: #E4E3DF;
+    --gray-50: #F9F9F9;
+    --gray-100: #F0EFED;
+    --gray-200: #E4E3DF;
+    --gray-300: #C8C7C2;
+    --gray-400: #9B9A96;
+    --gray-600: #5A5955;
+    --gray-800: #2A2A28;
+    --orange: #FF4405;
+    --blue: #088AB2;
+    --positive-bg: rgba(22,163,74,0.1);
+    --positive-fg: #16A34A;
+    --negative-bg: rgba(220,38,38,0.1);
+    --negative-fg: #DC2626;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--page-bg);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 48px;
+    background: var(--page-bg);
+  }
+  .surface {
+    background: var(--surface-bg);
+    padding: 64px 72px 80px;
+    border: 1px solid var(--divider);
+  }
+
+  /* Header */
+  .doc-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--divider);
+    margin-bottom: 48px;
+  }
+  .doc-head img.logo { height: 32px; width: auto; }
+  .doc-meta {
+    text-align: right;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+  .doc-meta .label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  /* Hero */
+  h1 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-style: normal;
+    font-synthesis: none;
+    font-size: 52px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0 0 24px;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    font-family: 'Inter';
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .hero-meta div span {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* Section headers */
+  h2 {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 30px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin: 64px 0 8px;
+  }
+  h2 + .sub {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0 0 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--divider);
+    max-width: 760px;
+  }
+
+  h3 {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
+    margin: 24px 0 8px;
+  }
+  h3.serif {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 22px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+  }
+
+  p {
+    font-family: 'Inter';
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0 0 16px;
+    max-width: 760px;
+  }
+  p strong { color: var(--text-primary); font-weight: 600; }
+  p.lede {
+    font-size: 15px;
+    color: var(--text-primary);
+  }
+
+  /* The Number — stat block */
+  .focal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: end;
+    margin: 32px 0 16px;
+    padding: 24px 0;
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+  }
+  .stat-big {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 88px;
+    line-height: 88px;
+    letter-spacing: -0.03em;
+    color: var(--orange);
+    margin: 0;
+  }
+  .stat-big-label {
+    font-family: 'Inter';
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 0 0 4px;
+  }
+  .stat-big-sub {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin: 0;
+    max-width: 380px;
+  }
+
+  /* Data tables */
+  table.data {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Inter';
+    font-size: 13px;
+    margin: 8px 0 16px;
+  }
+  table.data th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--text-primary);
+    background: transparent;
+  }
+  table.data td {
+    padding: 12px;
+    border-bottom: 1px solid var(--divider);
+    color: var(--text-secondary);
+    vertical-align: top;
+  }
+  table.data td:first-child {
+    color: var(--text-primary);
+  }
+  table.data th.num, table.data td.num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  table.data tr.total td {
+    border-top: 2px solid var(--text-primary);
+    border-bottom: none;
+    color: var(--text-primary);
+    font-weight: 600;
+    background: var(--gray-50);
+  }
+  table.data tr:nth-child(even):not(.total) td {
+    background: var(--gray-50);
+  }
+  table.data caption {
+    text-align: left;
+    font-family: 'Inter';
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0 0 8px;
+  }
+
+  /* Card grid for root cause */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .card {
+    background: var(--surface-bg);
+    border: 1px solid var(--divider);
+    padding: 32px;
+  }
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--divider);
+  }
+  .card-top .stat {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 28px;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-top .meta {
+    font-family: 'Inter';
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .card p { font-size: 14px; max-width: none; }
+  .card .solve {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--divider);
+  }
+  .card .solve p {
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .card .solve strong { color: var(--text-primary); font-weight: 600; }
+  .card .accounts {
+    font-family: 'Inter';
+    font-size: 12px;
+    color: var(--text-mute);
+    letter-spacing: 0.02em;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--divider);
+  }
+  .card .accounts span { color: var(--text-primary); font-weight: 500; }
+
+  /* Initiatives */
+  .init {
+    border: 1px solid var(--divider);
+    padding: 24px 28px;
+    margin-bottom: 12px;
+  }
+  .init-num {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 18px;
+    color: var(--text-mute);
+    margin-right: 8px;
+  }
+  .init h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .init .target {
+    display: inline-block;
+    font-family: 'Inter';
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .init p { font-size: 13px; margin: 0; }
+  .init.unowned {
+    border: 1px solid var(--text-primary);
+    background: var(--gray-50);
+  }
+  .init.unowned .target {
+    color: var(--orange);
+  }
+
+  /* Pull callout */
+  .pull {
+    border-left: 2px solid var(--divider);
+    padding: 0 0 0 24px;
+    margin: 24px 0;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-synthesis: none;
+    font-size: 20px;
+    line-height: 28px;
+    color: var(--text-primary);
+  }
+
+  /* Footer */
+  footer.doc-foot {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--divider);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer.doc-foot img.logo { height: 18px; width: auto; opacity: 0.7; }
+  footer.doc-foot .conf {
+    font-family: 'Inter';
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    body, .page { background: white; }
+    .surface { border: none; padding: 32px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="surface">
+
+    <!-- HEADER -->
+    <div class="doc-head">
+      <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjI1NSIgdmlld0JveD0iMCAwIDgwMCAyNTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNODAwIDBIMFYyNTVIODAwVjBaTTc0NS41NyAxMjYuMTQ5Qzc0NS41NyAxMzguMjM0IDc0My4wODggMTY1LjQ3MiA3MTUuNzkgMTg0LjA3OEM3MDguNzI3IDE4OC44NzQgNzAxLjg1NSAxOTIuMTM1IDY5My44MzcgMTk0LjQzN0M2ODYuMDExIDE5Ni43MzkgNjc0LjE3NSAxOTkuMDQgNjU1LjA4NSAxOTkuMDRDNjI2LjQ1MSAxOTkuMDQgNjA5LjA3OSAxOTIuNzEgNTk4LjE5OCAxODYuMTg4QzU5NC41NzEgMTg0LjA3OCA1ODcuODkgMTc5LjY2NyA1ODEuMjA5IDE3MS42MUM1NjYuODkxIDE1NC4xNTUgNTY2LjMxOSAxMzYuNTA3IDU2Ni4zMTkgMTI3Ljg3NkM1NjYuMzE5IDkzLjczMTggNTg0LjQ1NCA3Ni42NTk5IDU5NS41MjYgNjkuMTc5QzYwNi45NzkgNjEuMzE0NCA2MjMuMzk3IDU0LjQwODkgNjUzLjU1OCA1NC4wMjUzQzY1OS42NjcgNTQuMDI1MyA2NjUuNTg1IDU0LjAyNTMgNjcxLjY5MyA1NC42MDA4QzcwNy4zOTEgNTcuNDc4IDcyMy45OTkgNzEuNjcyNiA3MzMuMzUzIDg1LjA5OTlDNzM3Ljc0MyA5MS42MjE4IDc0NS41NyAxMDUuNjI1IDc0NS41NyAxMjYuMTQ5Wk02OTUuOTM3IDEyNi41MzNDNjk1LjkzNyAxMDkuMjY5IDY4OC42ODMgOTguMzM1NCA2ODMuNzIgOTMuOTIzNkM2ODEuODExIDkyLjAwNTQgNjc3LjIyOSA4OC41NTI3IDY3MC43MzkgODYuMjUwOUM2NjcuMzAzIDg1LjA5OTkgNjYzLjY3NiA4NC4xNDA5IDY1Ni40MjIgODQuMTQwOUM2NTAuMTIyIDg0LjE0MDkgNjQ0Ljk2OCA4NC43MTYzIDYzOS4wNSA4Ny4yMUM2MjMuMjA2IDkzLjkyMzYgNjE1Ljk1MiAxMTAuMjI4IDYxNS45NTIgMTI2LjcyNUM2MTUuOTUyIDEyOS4yMTggNjE2LjE0MyAxMzYuMTI0IDYxOC42MjQgMTQzLjIyMUM2MjYuNjQyIDE2Ny4zOSA2NDguNDA0IDE2OS4xMTcgNjU2LjYxMiAxNjkuMTE3QzY1OC45MDMgMTY5LjExNyA2NjcuNDk0IDE2OS4xMTcgNjc0Ljc0OCAxNjUuODU2QzY4OS44MjggMTU5LjE0MiA2OTUuOTM3IDE0MS44NzggNjk1LjkzNyAxMjYuNTMzWk01NTMuMTA2IDEyOC4yNTlDNTUzLjEwNiAxMzQuMzk3IDU1Mi41MzMgMTU2LjQ1NyA1MzguNzg5IDE3Mi41NjlDNTM2LjQ5OCAxNzUuNDQ3IDUzMS43MjUgMTgwLjI0MiA1MjMuNzA4IDE4NC44NDZDNTIwLjg0NCAxODYuMzggNTE0LjczNiAxODkuNjQxIDUwNi41MjcgMTkxLjc1MUM0OTkuNjU1IDE5My40NzggNDk0LjY5MSAxOTQuNDM3IDQ4MS4xMzggMTk0LjQzN0gzOTUuNjE2VjU5LjAxMjdINDcyLjE2NkM0NzcuNTExIDU5LjAxMjcgNDgyLjg1NiA1OS4yMDQ1IDQ4OC4yMDEgNTkuNTg4MUM1MTkuNTA4IDYyLjI3MzYgNTMzLjI1MyA3NS41MDkxIDU0MS4yNyA4Ny4yMUM1NTIuNzI0IDEwMy43MDYgNTUzLjEwNiAxMjAuOTcgNTUzLjEwNiAxMjguMjU5Wk01MDUuOTU0IDEyNy4xMDhDNTA1Ljk1NCAxMjIuODg4IDUwNS4zODIgMTA3LjczNSA0OTMuNTQ2IDk4LjUyNzNDNDgzLjgzNiA5MS4xNjM2IDQ3MC4yNTggOTEuMjIwNCA0NjYuMzExIDkxLjIzNjlDNDY2LjE0NiA5MS4yMzc2IDQ2NS45OTcgOTEuMjM4MiA0NjUuODY2IDkxLjIzODJINDQyLjc2OFYxNjMuNzQ2SDQ2Ny4zOTNDNDcwLjA2NiAxNjMuNzQ2IDQ3Mi45MjkgMTYzLjU1NCA0NzUuNzkzIDE2My4xN0M0OTIuNDAxIDE2MS4wNiA0OTguMzE5IDE1My41NzkgNTAxLjU2NCAxNDYuNjc0QzUwNS43NjMgMTM4LjA0MiA1MDUuOTU0IDEzMC43NTMgNTA1Ljk1NCAxMjcuMTA4Wk0yMjguNjg1IDE5NC40MzdIMzcyLjYyMVYxNjMuNzQ2SDI3Ni45ODJWMTQyLjA3SDM2My44MzlWMTExLjU3MUgyNzYuOTgyVjg5LjMySDM3MC45MDNWNTkuMDEyN0gyMjguNjg1VjE5NC40MzdaTTIwOS4xMDcgMTk0LjQzN0gxNTUuODQ3TDEyNy45NzYgMTQ1LjEzOUgxMDIuMzk2VjE5NC40MzdINTMuOTA4MlY1OS4wMTI3SDE1My4xNzRDMTcxLjMwOSA1OS4wMTI3IDE4OC42ODEgNjAuMzU1NCAxOTkuNTYyIDc3LjYxOTFDMjAyLjA0NCA4MS42NDczIDIwNi40MzQgODkuNzAzNyAyMDYuNDM0IDEwMS45OEMyMDYuNDM0IDEwOC4zMSAyMDUuMDk4IDEyNi4zNDEgMTg4LjEwOCAxMzUuNzRDMTg0Ljg2MyAxMzcuNjU4IDE4Mi4zODEgMTM4LjYxNyAxNzUuNTA5IDE0MC4zNDRMMjA5LjEwNyAxOTQuNDM3Wk0xNTguMzI4IDEwMi4xNzJDMTU4LjMyOCAxMDEuMDIxIDE1OC4xMzcgOTcuOTUxOSAxNTYuMjI4IDk1LjI2NjRDMTUyLjk4MyA5MC40NzA5IDE0Ny42MzggODkuNzAzNyAxNDIuNDg0IDg5LjcwMzdIMTAyLjM5NlYxMTQuNjRIMTM4LjY2NkMxNDcuODI5IDExNC42NCAxNTIuNjAxIDExMy40ODkgMTU1LjY1NiAxMDkuODQ1QzE1OC4xMzcgMTA2Ljc3NiAxNTguMzI4IDEwMy43MDYgMTU4LjMyOCAxMDIuMTcyWiIgZmlsbD0iIzE0MTQxNCIvPgo8L3N2Zz4K" alt="Redo">
+      <div class="doc-meta">
+        Returns · Post-Sales
+        <span class="label">May 2026</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <h1>May 2026 churn report</h1>
+    <div class="hero-meta">
+      <div><span>From</span>Hugh Roberts</div>
+      <div><span>To</span>Tanner, Jordan, Aaron</div>
+      <div><span>Period</span>May 2026</div>
+      <div><span>Area</span>Returns · Post-Sales</div>
+    </div>
+
+    <!-- THE NUMBER -->
+    <h2>The number</h2>
+    <p class="sub">Total May churn is shown in black. "Operating churn" is the focal number, which filters out revenue churn from negative-margin corrections and merchants closing their online store.</p>
+
+    <div class="focal">
+      <div>
+        <p class="stat-big-label">Operating Churn</p>
+        <p class="stat-big">$1,557,464</p>
+      </div>
+      <div>
+        <p class="stat-big-sub">The focal number for May. Filters out revenue churn from negative-margin corrections and merchants closing their online store.</p>
+      </div>
+    </div>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="num">Value</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total May Churn</td><td class="num">$2,334,509</td><td>105 Master rows + James Michelle</td></tr>
+        <tr><td>Negative-Margin Carve-Out</td><td class="num">$590,000</td><td>BOOMBA family + James Michelle</td></tr>
+        <tr><td>Online Store Closure Carve-Out</td><td class="num">$187,045</td><td>Fashion Ten & Trends</td></tr>
+        <tr><td>Operating Churn</td><td class="num">$1,557,464</td><td>Total May churn less carve-outs</td></tr>
+        <tr><td>Product Churn Events</td><td class="num">75</td><td>$1,131,028 operating impact</td></tr>
+      </tbody>
+    </table>
+
+    <!-- OPERATING CHURN -->
+    <h2>Operating churn</h2>
+    <p class="sub">Excludes BOOMBA, James Michelle, and Fashion Ten & Trends.</p>
+    <p>BOOMBA and James Michelle are excluded because they were negative-margin deal corrections. Fashion Ten & Trends is excluded because they left CommentSold and closed their online store to sell exclusively on WhatNot.</p>
+    <p>EBY remains in operating churn because it finalized in May though this was known a few months prior.</p>
+
+    <!-- NEGATIVE MARGIN CARVE OUT -->
+    <h2>Negative-margin carve-out</h2>
+    <p class="sub">$590,000 removed from operating churn.</p>
+    <p>Only BOOMBA and James Michelle are carved out as negative-margin deals. Other margin corrections were revenue neutral, negligible, or high-margin corrections. On both BOOMBA and James Michelle, FSR / coverage pricing assumptions did not survive post-go-live actuals.</p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Merchant Group</th>
+          <th class="num">Rows / Deals</th>
+          <th>Lifecycle</th>
+          <th class="num">$ Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>BOOMBA family</td><td class="num">7 regional rows; negative-margin FSR / coverage structure</td><td>Post-Onboarding</td><td class="num">$368,000</td></tr>
+        <tr><td>James Michelle</td><td class="num">Returns + FSR; refused restructure options after margin failed</td><td>Onboarding</td><td class="num">$222,000</td></tr>
+        <tr class="total"><td>Total Negative-Margin Carve-Out</td><td class="num">8</td><td>—</td><td class="num">$590,000</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ONLINE STORE CLOSURE -->
+    <h2>Online store closure carve-out</h2>
+    <p class="sub">$187,045 removed from operating churn.</p>
+    <p>Fashion Ten & Trends is excluded from operating churn. They left CommentSold and closed their online store to sell exclusively on WhatNot, so I am not treating this as operating churn tied to product experience, pricing, onboarding, or account health.</p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Merchant</th>
+          <th>Reason</th>
+          <th>Lifecycle</th>
+          <th class="num">$ Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Fashion Ten & Trends</td><td>Left CommentSold and closed online store to sell exclusively on WhatNot</td><td>Post-Onboarding</td><td class="num">$187,045</td></tr>
+      </tbody>
+    </table>
+
+    <!-- BY EVENT TYPE -->
+    <h2>Operating churn by event type</h2>
+    <p class="sub">"Product churn" refers to completely churning off a Reverse Logistics product such as Returns, FSR, PP+, or Extended Warranties.</p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Event Type</th>
+          <th class="num">Events</th>
+          <th class="num">$ Impact</th>
+          <th class="num">% of Operating</th>
+          <th class="num">Avg $</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Product Churn</td><td class="num">75</td><td class="num">$1,131,028</td><td class="num">72.6%</td><td class="num">$15,080</td></tr>
+        <tr><td>Monetization Downgrade</td><td class="num">14</td><td class="num">$341,265</td><td class="num">21.9%</td><td class="num">$24,376</td></tr>
+        <tr><td>Price Reduction</td><td class="num">8</td><td class="num">$85,171</td><td class="num">5.5%</td><td class="num">$10,646</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td><td class="num">$16,056</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ONBOARDING -->
+    <h2>Onboarding vs post-onboarding churn</h2>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Lifecycle</th>
+          <th class="num">Operating Events</th>
+          <th class="num">Operating $</th>
+          <th class="num">% of Operating</th>
+          <th class="num">All-In Events</th>
+          <th class="num">All-In $</th>
+          <th class="num">% of All-In</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Post-Onboarding</td><td class="num">75</td><td class="num">$1,136,442</td><td class="num">73.0%</td><td class="num">83</td><td class="num">$1,691,487</td><td class="num">72.5%</td></tr>
+        <tr><td>Onboarding</td><td class="num">22</td><td class="num">$421,021</td><td class="num">27.0%</td><td class="num">23</td><td class="num">$643,021</td><td class="num">27.5%</td></tr>
+        <tr class="total"><td>Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td><td class="num">106</td><td class="num">$2,334,509</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+
+    <!-- BY REASON -->
+    <h2>Operating churn by reason</h2>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Reason</th>
+          <th class="num">Events</th>
+          <th class="num">$ Impact</th>
+          <th class="num">% of Operating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Stakeholder / Business Changes</td><td class="num">14</td><td class="num">$361,708</td><td class="num">23.2%</td></tr>
+        <tr><td>Pricing & Value Concerns</td><td class="num">15</td><td class="num">$342,074</td><td class="num">22.0%</td></tr>
+        <tr><td>Coverage / Product Concerns</td><td class="num">20</td><td class="num">$309,849</td><td class="num">19.9%</td></tr>
+        <tr><td>Technical / Integration Issues</td><td class="num">13</td><td class="num">$300,423</td><td class="num">19.3%</td></tr>
+        <tr><td>Contract / Commercial Issues</td><td class="num">10</td><td class="num">$160,925</td><td class="num">10.3%</td></tr>
+        <tr><td>Implementation / Launch Delays</td><td class="num">1</td><td class="num">$50,000</td><td class="num">3.2%</td></tr>
+        <tr><td>Under Investigation</td><td class="num">24</td><td class="num">$32,485</td><td class="num">2.1%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+
+    <!-- BY PRODUCT -->
+    <h2>By product</h2>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="num">Events</th>
+          <th class="num">$ Impact</th>
+          <th class="num">% of Operating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Returns</td><td class="num">82</td><td class="num">$1,291,632</td><td class="num">82.9%</td></tr>
+        <tr><td>Extended Warranties</td><td class="num">5</td><td class="num">$178,140</td><td class="num">11.4%</td></tr>
+        <tr><td>PP+</td><td class="num">10</td><td class="num">$87,692</td><td class="num">5.6%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+
+    <p>Right now, FSR is included in Returns. I'll report on this separately as soon as it's broken out in the data model. ETA unknown, there are a lot of complexities and I've deprioritized it.</p>
+
+    <!-- BY MONETIZATION -->
+    <h2>By monetization method</h2>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Monetization Method at Exit</th>
+          <th class="num">Events</th>
+          <th class="num">$ Impact</th>
+          <th class="num">% of Operating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>No active model after product exit</td><td class="num">76</td><td class="num">$1,137,180</td><td class="num">73.0%</td></tr>
+        <tr><td>Exchange Agent</td><td class="num">9</td><td class="num">$202,749</td><td class="num">13.0%</td></tr>
+        <tr><td>Coverage + Exchange Agent</td><td class="num">7</td><td class="num">$145,147</td><td class="num">9.3%</td></tr>
+        <tr><td>Usage + Exchange Agent</td><td class="num">4</td><td class="num">$71,516</td><td class="num">4.6%</td></tr>
+        <tr><td>Coverage + Exchange Agent + RMR</td><td class="num">1</td><td class="num">$872</td><td class="num">0.1%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+      </tbody>
+    </table>
+
+    <!-- MANAGED VS SELF SERVE -->
+    <h2>Product churn: managed vs self serve</h2>
+    <p class="sub">Product Churn events only, excluding the negative-margin carve-out and Fashion Ten & Trends.</p>
+
+    <table class="data">
+      <thead>
+        <tr>
+          <th>Coverage Type</th>
+          <th class="num">Product Churn Events</th>
+          <th class="num">% of Events</th>
+          <th class="num">$ Impact</th>
+          <th class="num">% of Product Churn $</th>
+          <th class="num">Avg $</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Managed (PA assigned)</td><td class="num">32</td><td class="num">42.7%</td><td class="num">$947,513</td><td class="num">83.8%</td><td class="num">$29,610</td></tr>
+        <tr><td>Self Serve</td><td class="num">43</td><td class="num">57.3%</td><td class="num">$183,515</td><td class="num">16.2%</td><td class="num">$4,268</td></tr>
+        <tr class="total"><td>Total Product Churn</td><td class="num">75</td><td class="num">100%</td><td class="num">$1,131,028</td><td class="num">100%</td><td class="num">$15,080</td></tr>
+      </tbody>
+    </table>
+
+    <p class="pull">Self Serve drives 43 of 75 product-churn events, 57.3%, but only 16.2% of product-churn dollars. Managed accounts carry the dollar risk.</p>
+
+    <!-- ROOT CAUSE STRATEGIC VIEW -->
+    <h2>Root cause — strategic view</h2>
+    <p class="sub">Operating churn grouped by the response it requires.</p>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Stakeholder / business changes</h3>
+            <div class="meta">14 events · 23.2%</div>
+          </div>
+          <div class="stat">$361,708</div>
+        </div>
+        <p>The majority of this is EBY. Customer-side leadership changes, business pivots, and moves to other selling models.</p>
+        <div class="solve">
+          <p><strong>The solve:</strong> We can solve for this, but it cannot be reactive. This is preventable with narrower focuses and smaller books.</p>
+          <p><strong>PAs:</strong> Increased focus on getting accounts into the "winning zone": healthy margins, optimized attach rate, conversion rate, and other risk factors. This means saying "not now" to other asks from the business. Churn is top priority.</p>
+          <p><strong>AMs:</strong> We're hiring more AMs to tackle this. It's already improving as we hire. Once staffed, we'll cover 95% of our revenue with book sizes that allow that level of proactivity.</p>
+        </div>
+        <div class="accounts"><span>Key accounts:</span> EBY ($286K), PROJECT SOCIAL T ($20K), The Western Company ($14K), Incase.com ($11K), YES HOMO ($11K).</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Pricing & value concerns</h3>
+            <div class="meta">15 events · 22.0%</div>
+          </div>
+          <div class="stat">$342,074</div>
+        </div>
+        <p>Deals priced too high, unclear value story, or proactive corrections to keep economics aligned. Harmonize belongs here because it was high-margin, not negative-margin.</p>
+        <div class="solve">
+          <p><strong>The solve:</strong> Spencer Evans and Haden rolled out a new pricing table to better calculate return rate and better handle multi-product deals. We rolled out stricter requirements around high-margin deals.</p>
+        </div>
+        <div class="accounts"><span>Key accounts:</span> Formuland ($143K), Impact Dog Crates ($60K), Harmonize Beauty ($57K), forever french baby ($47K), AZVA ($8K).</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Coverage / product concerns</h3>
+            <div class="meta">20 events · 19.9%</div>
+          </div>
+          <div class="stat">$309,849</div>
+        </div>
+        <p>Product fit, coverage-model objections, conversion concerns, warranty design, and cases where merchants wanted to own the economics.</p>
+        <div class="solve">
+          <p><strong>The solve:</strong> Seth has done great work on revamped SE playbooks to better catch and handle these before go-live. Tyler Welch and I put together a sales training to drive the points home for AEs, and we'll have a monthly cadence to review this at the beginning of each month.</p>
+        </div>
+        <div class="accounts"><span>Key accounts:</span> Proline Range Hoods ($105K), Bullstrap ($67K), Pillow Cube ($42K), Ultimate Sack ($26K), Cadence ($20K).</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Product / technical</h3>
+            <div class="meta">13 events · 19.3%</div>
+          </div>
+          <div class="stat">$300,423</div>
+        </div>
+        <p>Integration failures, currency support, label generation, refund errors, and edge-case workflows. Customers liked the core product but specific functionality broke trust.</p>
+        <div class="solve">
+          <p><strong>The solve:</strong> Creating an Integrations Solution Architect role to test, validate, and troubleshoot integrations issues during the SMB and lower Growth onboarding processes. The role will also collaborate with the Returns Integration team to ensure builds have the right capabilities for merchants.</p>
+          <p>Increased focus on making the product more usable for merchants. Jesse and Jordan have shipped usability improvements and will continue to do so.</p>
+        </div>
+        <div class="accounts"><span>Key accounts:</span> Chirp ($110K), TULIO Fashion ($70K), Geode Swimwear ($61K), Precious Moments ($32K), CULT CREW ($12K).</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Contract / commercial issues</h3>
+            <div class="meta">10 events · 10.3%</div>
+          </div>
+          <div class="stat">$160,925</div>
+        </div>
+        <p>Billing disputes, contract terms, commercial structure, or shared revenue friction.</p>
+        <div class="solve">
+          <p><strong>The solve:</strong> PAs focusing on getting accounts into the "winning zone".</p>
+        </div>
+        <div class="accounts"><span>Key accounts:</span> SaveTheGirls ($89K), ILUS LABEL ($19K), Gay Pride Apparel ($16K), LA GOLF ($21K).</div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Implementation / launch delays</h3>
+            <div class="meta">1 event · 3.2%</div>
+          </div>
+          <div class="stat">$50,000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div>
+            <h3 class="serif">Under investigation</h3>
+            <div class="meta">24 events · 2.1%</div>
+          </div>
+          <div class="stat">$32,485</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INITIATIVES -->
+    <h2>Initiatives in motion</h2>
+    <p class="sub">Six initiatives mapped against the operating buckets.</p>
+
+    <div class="init">
+      <div class="target">Target bucket — Pricing & Value</div>
+      <h3><span class="init-num">1.</span>Spencer Evans's pricing table + stricter requirements on high-margin deals</h3>
+      <p>Prevents Formuland-style overpricing and separates high-margin corrections from true negative-margin carve-outs.</p>
+    </div>
+
+    <div class="init">
+      <div class="target">Target bucket — Product churn events</div>
+      <h3><span class="init-num">2.</span>AM hires covering 95% of revenue relationships</h3>
+      <p>Self Serve is 43 of 75 product-churn events and only 16.2% of product-churn dollars. AM coverage is the unit-churn lever.</p>
+    </div>
+
+    <div class="init">
+      <div class="target">Target bucket — Post-Onboarding risk</div>
+      <h3><span class="init-num">3.</span>Winning-zone framework for PAs with Gabe Miller</h3>
+      <p>Post-Onboarding is $1,136,442 of operating churn. The framework gives PAs earlier signal before drift becomes churn.</p>
+    </div>
+
+    <div class="init">
+      <div class="target">Target bucket — Pricing & Value</div>
+      <h3><span class="init-num">4.</span>New mid-market and SMB SE playbooks</h3>
+      <p>Addresses undersold value, weak product fit, and deals that need stricter guardrails before close.</p>
+    </div>
+
+    <div class="init">
+      <div class="target">Target bucket — Pricing & Value</div>
+      <h3><span class="init-num">5.</span>Sales training with Tyler Welch</h3>
+      <p>Upstream training for AEs and SEs on well-run deals, value narrative, and economics before handoff.</p>
+    </div>
+
+    <div class="init unowned">
+      <div class="target">Target bucket — Product · No current owner</div>
+      <h3><span class="init-num">6.</span>Integrations Specialist — approve</h3>
+      <p>Product / Technical is $300,423, 19.3% of operating churn. This is the major bucket without a named operational owner outside engineering.</p>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="doc-foot">
+      <img class="logo" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjI1NSIgdmlld0JveD0iMCAwIDgwMCAyNTUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNODAwIDBIMFYyNTVIODAwVjBaTTc0NS41NyAxMjYuMTQ5Qzc0NS41NyAxMzguMjM0IDc0My4wODggMTY1LjQ3MiA3MTUuNzkgMTg0LjA3OEM3MDguNzI3IDE4OC44NzQgNzAxLjg1NSAxOTIuMTM1IDY5My44MzcgMTk0LjQzN0M2ODYuMDExIDE5Ni43MzkgNjc0LjE3NSAxOTkuMDQgNjU1LjA4NSAxOTkuMDRDNjI2LjQ1MSAxOTkuMDQgNjA5LjA3OSAxOTIuNzEgNTk4LjE5OCAxODYuMTg4QzU5NC41NzEgMTg0LjA3OCA1ODcuODkgMTc5LjY2NyA1ODEuMjA5IDE3MS42MUM1NjYuODkxIDE1NC4xNTUgNTY2LjMxOSAxMzYuNTA3IDU2Ni4zMTkgMTI3Ljg3NkM1NjYuMzE5IDkzLjczMTggNTg0LjQ1NCA3Ni42NTk5IDU5NS41MjYgNjkuMTc5QzYwNi45NzkgNjEuMzE0NCA2MjMuMzk3IDU0LjQwODkgNjUzLjU1OCA1NC4wMjUzQzY1OS42NjcgNTQuMDI1MyA2NjUuNTg1IDU0LjAyNTMgNjcxLjY5MyA1NC42MDA4QzcwNy4zOTEgNTcuNDc4IDcyMy45OTkgNzEuNjcyNiA3MzMuMzUzIDg1LjA5OTlDNzM3Ljc0MyA5MS42MjE4IDc0NS41NyAxMDUuNjI1IDc0NS41NyAxMjYuMTQ5Wk02OTUuOTM3IDEyNi41MzNDNjk1LjkzNyAxMDkuMjY5IDY4OC42ODMgOTguMzM1NCA2ODMuNzIgOTMuOTIzNkM2ODEuODExIDkyLjAwNTQgNjc3LjIyOSA4OC41NTI3IDY3MC43MzkgODYuMjUwOUM2NjcuMzAzIDg1LjA5OTkgNjYzLjY3NiA4NC4xNDA5IDY1Ni40MjIgODQuMTQwOUM2NTAuMTIyIDg0LjE0MDkgNjQ0Ljk2OCA4NC43MTYzIDYzOS4wNSA4Ny4yMUM2MjMuMjA2IDkzLjkyMzYgNjE1Ljk1MiAxMTAuMjI4IDYxNS45NTIgMTI2LjcyNUM2MTUuOTUyIDEyOS4yMTggNjE2LjE0MyAxMzYuMTI0IDYxOC42MjQgMTQzLjIyMUM2MjYuNjQyIDE2Ny4zOSA2NDguNDA0IDE2OS4xMTcgNjU2LjYxMiAxNjkuMTE3QzY1OC45MDMgMTY5LjExNyA2NjcuNDk0IDE2OS4xMTcgNjc0Ljc0OCAxNjUuODU2QzY4OS44MjggMTU5LjE0MiA2OTUuOTM3IDE0MS44NzggNjk1LjkzNyAxMjYuNTMzWk01NTMuMTA2IDEyOC4yNTlDNTUzLjEwNiAxMzQuMzk3IDU1Mi41MzMgMTU2LjQ1NyA1MzguNzg5IDE3Mi41NjlDNTM2LjQ5OCAxNzUuNDQ3IDUzMS43MjUgMTgwLjI0MiA1MjMuNzA4IDE4NC44NDZDNTIwLjg0NCAxODYuMzggNTE0LjczNiAxODkuNjQxIDUwNi41MjcgMTkxLjc1MUM0OTkuNjU1IDE5My40NzggNDk0LjY5MSAxOTQuNDM3IDQ4MS4xMzggMTk0LjQzN0gzOTUuNjE2VjU5LjAxMjdINDcyLjE2NkM0NzcuNTExIDU5LjAxMjcgNDgyLjg1NiA1OS4yMDQ1IDQ4OC4yMDEgNTkuNTg4MUM1MTkuNTA4IDYyLjI3MzYgNTMzLjI1MyA3NS41MDkxIDU0MS4yNyA4Ny4yMUM1NTIuNzI0IDEwMy43MDYgNTUzLjEwNiAxMjAuOTcgNTUzLjEwNiAxMjguMjU5Wk01MDUuOTU0IDEyNy4xMDhDNTA1Ljk1NCAxMjIuODg4IDUwNS4zODIgMTA3LjczNSA0OTMuNTQ2IDk4LjUyNzNDNDgzLjgzNiA5MS4xNjM2IDQ3MC4yNTggOTEuMjIwNCA0NjYuMzExIDkxLjIzNjlDNDY2LjE0NiA5MS4yMzc2IDQ2NS45OTcgOTEuMjM4MiA0NjUuODY2IDkxLjIzODJINDQyLjc2OFYxNjMuNzQ2SDQ2Ny4zOTNDNDcwLjA2NiAxNjMuNzQ2IDQ3Mi45MjkgMTYzLjU1NCA0NzUuNzkzIDE2My4xN0M0OTIuNDAxIDE2MS4wNiA0OTguMzE5IDE1My41NzkgNTAxLjU2NCAxNDYuNjc0QzUwNS43NjMgMTM4LjA0MiA1MDUuOTU0IDEzMC43NTMgNTA1Ljk1NCAxMjcuMTA4Wk0yMjguNjg1IDE5NC40MzdIMzcyLjYyMVYxNjMuNzQ2SDI3Ni45ODJWMTQyLjA3SDM2My44MzlWMTExLjU3MUgyNzYuOTgyVjg5LjMySDM3MC45MDNWNTkuMDEyN0gyMjguNjg1VjE5NC40MzdaTTIwOS4xMDcgMTk0LjQzN0gxNTUuODQ3TDEyNy45NzYgMTQ1LjEzOUgxMDIuMzk2VjE5NC40MzdINTMuOTA4MlY1OS4wMTI3SDE1My4xNzRDMTcxLjMwOSA1OS4wMTI3IDE4OC42ODEgNjAuMzU1NCAxOTkuNTYyIDc3LjYxOTFDMjAyLjA0NCA4MS42NDczIDIwNi40MzQgODkuNzAzNyAyMDYuNDM0IDEwMS45OEMyMDYuNDM0IDEwOC4zMSAyMDUuMDk4IDEyNi4zNDEgMTg4LjEwOCAxMzUuNzRDMTg0Ljg2MyAxMzcuNjU4IDE4Mi4zODEgMTM4LjYxNyAxNzUuNTA5IDE0MC4zNDRMMjA5LjEwNyAxOTQuNDM3Wk0xNTguMzI4IDEwMi4xNzJDMTU4LjMyOCAxMDEuMDIxIDE1OC4xMzcgOTcuOTUxOSAxNTYuMjI4IDk1LjI2NjRDMTUyLjk4MyA5MC40NzA5IDE0Ny42MzggODkuNzAzNyAxNDIuNDg0IDg5LjcwMzdIMTAyLjM5NlYxMTQuNjRIMTM4LjY2NkMxNDcuODI5IDExNC42NCAxNTIuNjAxIDExMy40ODkgMTU1LjY1NiAxMDkuODQ1QzE1OC4xMzcgMTA2Ljc3NiAxNTguMzI4IDEwMy43MDYgMTU4LjMyOCAxMDIuMTcyWiIgZmlsbD0iIzE0MTQxNCIvPgo8L3N2Zz4K" alt="Redo">
+      <div class="conf">Internal — Returns Post-Sales</div>
+    </footer>
+
+  </div>
+</div>
+</body>
+</html>
