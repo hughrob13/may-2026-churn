@@ -304,6 +304,33 @@
     margin-bottom: 8px;
   }
   .card .solve strong { color: var(--text-primary); font-weight: 600; }
+  .card .solve h4 {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin: 12px 0 6px;
+    letter-spacing: 0.02em;
+  }
+  .card .solve h4:first-child { margin-top: 0; }
+  .card .solve ul {
+    padding-left: 20px;
+    margin: 0 0 8px;
+    list-style: disc;
+  }
+  .card .solve ul ul {
+    list-style: circle;
+    margin: 4px 0 4px;
+  }
+  .card .solve ul ul ul { list-style: square; }
+  .card .solve li {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    line-height: 1.5;
+  }
+  .card .solve a { color: var(--blue); text-decoration: underline; word-break: break-all; }
   .card .accounts {
     font-family: 'Inter';
     font-size: 12px;
@@ -421,7 +448,7 @@
     <div class="focal">
       <div>
         <p class="stat-big-label">Operating Churn</p>
-        <p class="stat-big">$1,557,464</p>
+        <p class="stat-big">$1,498,626</p>
       </div>
       <div>
         <p class="stat-big-sub">The focal number for May. Filters out revenue churn from negative-margin corrections and merchants closing their online store.</p>
@@ -437,11 +464,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Total May Churn</td><td class="num">$2,334,509</td><td>105 Master rows + James Michelle</td></tr>
+        <tr><td>Total May Churn</td><td class="num">$2,275,671</td><td>All churn regardless of circumstance</td></tr>
         <tr><td>Negative-Margin Carve-Out</td><td class="num">$590,000</td><td>BOOMBA family + James Michelle</td></tr>
         <tr><td>Online Store Closure Carve-Out</td><td class="num">$187,045</td><td>Fashion Ten & Trends</td></tr>
-        <tr><td>Operating Churn</td><td class="num">$1,557,464</td><td>Total May churn less carve-outs</td></tr>
-        <tr><td>Product Churn Events</td><td class="num">75</td><td>$1,131,028 operating impact</td></tr>
+        <tr><td>Operating Churn</td><td class="num">$1,498,626</td><td>Total May churn less carve-outs</td></tr>
+        <tr><td>Product Churn Events</td><td class="num">75</td><td>$1,131,028 revenue. No longer on returns product</td></tr>
       </tbody>
     </table>
 
@@ -506,10 +533,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Product Churn</td><td class="num">75</td><td class="num">$1,131,028</td><td class="num">72.6%</td><td class="num">$15,080</td></tr>
-        <tr><td>Monetization Downgrade</td><td class="num">14</td><td class="num">$341,265</td><td class="num">21.9%</td><td class="num">$24,376</td></tr>
-        <tr><td>Price Reduction</td><td class="num">8</td><td class="num">$85,171</td><td class="num">5.5%</td><td class="num">$10,646</td></tr>
-        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td><td class="num">$16,056</td></tr>
+        <tr><td>Product Churn</td><td class="num">75</td><td class="num">$1,131,028</td><td class="num">75.5%</td><td class="num">$15,080</td></tr>
+        <tr><td>Monetization Downgrade</td><td class="num">14</td><td class="num">$341,265</td><td class="num">22.8%</td><td class="num">$24,376</td></tr>
+        <tr><td>Price Reduction</td><td class="num">7</td><td class="num">$26,333</td><td class="num">1.8%</td><td class="num">$3,762</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">96</td><td class="num">$1,498,626</td><td class="num">100%</td><td class="num">$15,611</td></tr>
       </tbody>
     </table>
 
@@ -529,9 +556,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Post-Onboarding</td><td class="num">75</td><td class="num">$1,136,442</td><td class="num">73.0%</td><td class="num">83</td><td class="num">$1,691,487</td><td class="num">72.5%</td></tr>
-        <tr><td>Onboarding</td><td class="num">22</td><td class="num">$421,021</td><td class="num">27.0%</td><td class="num">23</td><td class="num">$643,021</td><td class="num">27.5%</td></tr>
-        <tr class="total"><td>Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td><td class="num">106</td><td class="num">$2,334,509</td><td class="num">100%</td></tr>
+        <tr><td>Post-Onboarding</td><td class="num">74</td><td class="num">$1,077,604</td><td class="num">71.9%</td><td class="num">82</td><td class="num">$1,632,649</td><td class="num">71.7%</td></tr>
+        <tr><td>Onboarding</td><td class="num">22</td><td class="num">$421,021</td><td class="num">28.1%</td><td class="num">23</td><td class="num">$643,021</td><td class="num">28.3%</td></tr>
+        <tr class="total"><td>Total</td><td class="num">96</td><td class="num">$1,498,626</td><td class="num">100%</td><td class="num">105</td><td class="num">$2,275,671</td><td class="num">100%</td></tr>
       </tbody>
     </table>
 
@@ -548,14 +575,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Stakeholder / Business Changes</td><td class="num">14</td><td class="num">$361,708</td><td class="num">23.2%</td></tr>
-        <tr><td>Pricing & Value Concerns</td><td class="num">15</td><td class="num">$342,074</td><td class="num">22.0%</td></tr>
-        <tr><td>Coverage / Product Concerns</td><td class="num">20</td><td class="num">$309,849</td><td class="num">19.9%</td></tr>
-        <tr><td>Technical / Integration Issues</td><td class="num">13</td><td class="num">$300,423</td><td class="num">19.3%</td></tr>
-        <tr><td>Contract / Commercial Issues</td><td class="num">10</td><td class="num">$160,925</td><td class="num">10.3%</td></tr>
-        <tr><td>Implementation / Launch Delays</td><td class="num">1</td><td class="num">$50,000</td><td class="num">3.2%</td></tr>
-        <tr><td>Under Investigation</td><td class="num">24</td><td class="num">$32,485</td><td class="num">2.1%</td></tr>
-        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+        <tr><td>Stakeholder / Business Changes</td><td class="num">14</td><td class="num">$361,708</td><td class="num">24.1%</td></tr>
+        <tr><td>Pricing & Value Concerns</td><td class="num">15</td><td class="num">$342,074</td><td class="num">22.8%</td></tr>
+        <tr><td>Coverage / Product Concerns</td><td class="num">20</td><td class="num">$309,849</td><td class="num">20.7%</td></tr>
+        <tr><td>Technical / Integration Issues</td><td class="num">13</td><td class="num">$300,423</td><td class="num">20.0%</td></tr>
+        <tr><td>Contract / Commercial Issues</td><td class="num">9</td><td class="num">$102,087</td><td class="num">6.8%</td></tr>
+        <tr><td>Implementation / Launch Delays</td><td class="num">1</td><td class="num">$50,000</td><td class="num">3.3%</td></tr>
+        <tr><td>Under Investigation</td><td class="num">24</td><td class="num">$32,485</td><td class="num">2.2%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">96</td><td class="num">$1,498,626</td><td class="num">100%</td></tr>
       </tbody>
     </table>
 
@@ -572,10 +599,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>Returns</td><td class="num">82</td><td class="num">$1,291,632</td><td class="num">82.9%</td></tr>
-        <tr><td>Extended Warranties</td><td class="num">5</td><td class="num">$178,140</td><td class="num">11.4%</td></tr>
-        <tr><td>PP+</td><td class="num">10</td><td class="num">$87,692</td><td class="num">5.6%</td></tr>
-        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+        <tr><td>Returns</td><td class="num">81</td><td class="num">$1,232,794</td><td class="num">82.3%</td></tr>
+        <tr><td>Extended Warranties</td><td class="num">5</td><td class="num">$178,140</td><td class="num">11.9%</td></tr>
+        <tr><td>PP+</td><td class="num">10</td><td class="num">$87,692</td><td class="num">5.9%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">96</td><td class="num">$1,498,626</td><td class="num">100%</td></tr>
       </tbody>
     </table>
 
@@ -594,12 +621,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>No active model after product exit</td><td class="num">76</td><td class="num">$1,137,180</td><td class="num">73.0%</td></tr>
-        <tr><td>Exchange Agent</td><td class="num">9</td><td class="num">$202,749</td><td class="num">13.0%</td></tr>
-        <tr><td>Coverage + Exchange Agent</td><td class="num">7</td><td class="num">$145,147</td><td class="num">9.3%</td></tr>
-        <tr><td>Usage + Exchange Agent</td><td class="num">4</td><td class="num">$71,516</td><td class="num">4.6%</td></tr>
+        <tr><td>No active model after product exit</td><td class="num">76</td><td class="num">$1,137,180</td><td class="num">75.9%</td></tr>
+        <tr><td>Exchange Agent</td><td class="num">9</td><td class="num">$202,749</td><td class="num">13.5%</td></tr>
+        <tr><td>Coverage + Exchange Agent</td><td class="num">6</td><td class="num">$86,309</td><td class="num">5.8%</td></tr>
+        <tr><td>Usage + Exchange Agent</td><td class="num">4</td><td class="num">$71,516</td><td class="num">4.8%</td></tr>
         <tr><td>Coverage + Exchange Agent + RMR</td><td class="num">1</td><td class="num">$872</td><td class="num">0.1%</td></tr>
-        <tr class="total"><td>Operating Total</td><td class="num">97</td><td class="num">$1,557,464</td><td class="num">100%</td></tr>
+        <tr class="total"><td>Operating Total</td><td class="num">96</td><td class="num">$1,498,626</td><td class="num">100%</td></tr>
       </tbody>
     </table>
 
@@ -636,86 +663,122 @@
       <div class="card">
         <div class="card-top">
           <div>
-            <h3 class="serif">Stakeholder / business changes</h3>
-            <div class="meta">14 events · 23.2%</div>
+            <h3 class="serif">Problem: Stakeholder / business change</h3>
+            <div class="meta">14 events · 24.1%</div>
           </div>
           <div class="stat">$361,708</div>
         </div>
-        <p>The majority of this is EBY. Customer-side leadership changes, business pivots, and moves to other selling models.</p>
         <div class="solve">
-          <p><strong>The solve:</strong> We can solve for this, but it cannot be reactive. This is preventable with narrower focuses and smaller books.</p>
-          <p><strong>PAs:</strong> Increased focus on getting accounts into the "winning zone": healthy margins, optimized attach rate, conversion rate, and other risk factors. This means saying "not now" to other asks from the business. Churn is top priority.</p>
-          <p><strong>AMs:</strong> We're hiring more AMs to tackle this. It's already improving as we hire. Once staffed, we'll cover 95% of our revenue with book sizes that allow that level of proactivity.</p>
+          <h4>Solution</h4>
+          <p>Add AM Headcount</p>
+          <ul>
+            <li>95% of revenue will be covered</li>
+            <li>Filling 6 heads as quickly as possible</li>
+          </ul>
         </div>
-        <div class="accounts"><span>Key accounts:</span> EBY ($286K), PROJECT SOCIAL T ($20K), The Western Company ($14K), Incase.com ($11K), YES HOMO ($11K).</div>
       </div>
 
       <div class="card">
         <div class="card-top">
           <div>
-            <h3 class="serif">Pricing & value concerns</h3>
-            <div class="meta">15 events · 22.0%</div>
+            <h3 class="serif">Problem: Pricing & value concerns</h3>
+            <div class="meta">15 events · 22.8%</div>
           </div>
           <div class="stat">$342,074</div>
         </div>
-        <p>Deals priced too high, unclear value story, or proactive corrections to keep economics aligned. Harmonize belongs here because it was high-margin, not negative-margin.</p>
         <div class="solve">
-          <p><strong>The solve:</strong> Spencer Evans and Haden rolled out a new pricing table to better calculate return rate and better handle multi-product deals. We rolled out stricter requirements around high-margin deals.</p>
+          <h4>Solution</h4>
+          <p>New incentives for PAs:</p>
+          <ul>
+            <li>Revenue at 90%+ margin isn't included in revenue attainment (new in June)</li>
+            <li>Revenue below 0% margin isn't included in revenue attainment (change from last quarter)</li>
+          </ul>
+          <p>Running a spiff for getting accounts to winning zone: <a href="https://winning-zones.replit.app/out-of-zone">https://winning-zones.replit.app/out-of-zone</a></p>
         </div>
-        <div class="accounts"><span>Key accounts:</span> Formuland ($143K), Impact Dog Crates ($60K), Harmonize Beauty ($57K), forever french baby ($47K), AZVA ($8K).</div>
       </div>
 
       <div class="card">
         <div class="card-top">
           <div>
-            <h3 class="serif">Coverage / product concerns</h3>
-            <div class="meta">20 events · 19.9%</div>
+            <h3 class="serif">Problem: Coverage not fully sold</h3>
+            <div class="meta">20 events · 20.7%</div>
           </div>
           <div class="stat">$309,849</div>
         </div>
-        <p>Product fit, coverage-model objections, conversion concerns, warranty design, and cases where merchants wanted to own the economics.</p>
         <div class="solve">
-          <p><strong>The solve:</strong> Seth has done great work on revamped SE playbooks to better catch and handle these before go-live. Tyler Welch and I put together a sales training to drive the points home for AEs, and we'll have a monthly cadence to review this at the beginning of each month.</p>
+          <h4>Solution</h4>
+          <p>Issues:</p>
+          <ul>
+            <li>Missing stakeholders</li>
+            <li>Red flags on "we'll try it out" language
+              <ul>
+                <li>New hire enablement &mdash; Replit custom LMS system</li>
+                <li>Daily reporting cadence to leadership on new hire performance</li>
+              </ul>
+            </li>
+            <li>Pricing &mdash; Spencer owning, already made changes
+              <ul>
+                <li>New pricing table with more accurate data
+                  <ul>
+                    <li>High margin &mdash; marks for review if margin seems too high</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <p>Still needed:</p>
+          <ul>
+            <li>FIGURE OUT HOW TO GET ACCURATE RETURN RATES WITHOUT REP INPUT &mdash; JORDAN TO OWN</li>
+            <li>DETERMINE IF WE OFFER FSR top of funnel &mdash; Hugh and Jake to own</li>
+          </ul>
         </div>
-        <div class="accounts"><span>Key accounts:</span> Proline Range Hoods ($105K), Bullstrap ($67K), Pillow Cube ($42K), Ultimate Sack ($26K), Cadence ($20K).</div>
       </div>
 
       <div class="card">
         <div class="card-top">
           <div>
-            <h3 class="serif">Product / technical</h3>
-            <div class="meta">13 events · 19.3%</div>
+            <h3 class="serif">Problem: Product / technical issues</h3>
+            <div class="meta">13 events · 20.0%</div>
           </div>
           <div class="stat">$300,423</div>
         </div>
-        <p>Integration failures, currency support, label generation, refund errors, and edge-case workflows. Customers liked the core product but specific functionality broke trust.</p>
         <div class="solve">
-          <p><strong>The solve:</strong> Creating an Integrations Solution Architect role to test, validate, and troubleshoot integrations issues during the SMB and lower Growth onboarding processes. The role will also collaborate with the Returns Integration team to ensure builds have the right capabilities for merchants.</p>
-          <p>Increased focus on making the product more usable for merchants. Jesse and Jordan have shipped usability improvements and will continue to do so.</p>
+          <h4>Solution</h4>
+          <p>Make progress on usability roadmap (owner = Jordan). Examples:</p>
+          <ul>
+            <li>Visibility into Rev Share</li>
+            <li>Exchange accounting methods</li>
+            <li>Simplify how exchange discount options work</li>
+            <li>Pull out "policies" from the Return Flow</li>
+            <li>Coverage on/off (get rid of the selection of three return types)</li>
+          </ul>
+          <p>Support heads dedicated to large Returns onboarding accounts (owner = Aaron D.):</p>
+          <ul>
+            <li>Mitch Westnskow &mdash; signed offer, starting the 15th</li>
+          </ul>
+          <p>Employee onboarding of new hires (owner = Hugh):</p>
+          <ul>
+            <li>New hire enablement &mdash; Replit custom LMS system</li>
+            <li>Daily reporting cadence to leadership on new hire performance</li>
+          </ul>
         </div>
-        <div class="accounts"><span>Key accounts:</span> Chirp ($110K), TULIO Fashion ($70K), Geode Swimwear ($61K), Precious Moments ($32K), CULT CREW ($12K).</div>
       </div>
 
       <div class="card">
         <div class="card-top">
           <div>
             <h3 class="serif">Contract / commercial issues</h3>
-            <div class="meta">10 events · 10.3%</div>
+            <div class="meta">9 events · 6.8%</div>
           </div>
-          <div class="stat">$160,925</div>
+          <div class="stat">$102,087</div>
         </div>
-        <p>Billing disputes, contract terms, commercial structure, or shared revenue friction.</p>
-        <div class="solve">
-          <p><strong>The solve:</strong> PAs focusing on getting accounts into the "winning zone".</p>
-        </div>
-        <div class="accounts"><span>Key accounts:</span> SaveTheGirls ($89K), ILUS LABEL ($19K), Gay Pride Apparel ($16K), LA GOLF ($21K).</div>
       </div>
 
       <div class="card">
         <div class="card-top">
           <div>
             <h3 class="serif">Implementation / launch delays</h3>
-            <div class="meta">1 event · 3.2%</div>
+            <div class="meta">1 event · 3.3%</div>
           </div>
           <div class="stat">$50,000</div>
         </div>
@@ -725,52 +788,12 @@
         <div class="card-top">
           <div>
             <h3 class="serif">Under investigation</h3>
-            <div class="meta">24 events · 2.1%</div>
+            <div class="meta">24 events · 2.2%</div>
           </div>
           <div class="stat">$32,485</div>
         </div>
       </div>
 
-    </div>
-
-    <!-- INITIATIVES -->
-    <h2>Initiatives in motion</h2>
-    <p class="sub">Six initiatives mapped against the operating buckets.</p>
-
-    <div class="init">
-      <div class="target">Target bucket — Pricing & Value</div>
-      <h3><span class="init-num">1.</span>Spencer Evans's pricing table + stricter requirements on high-margin deals</h3>
-      <p>Prevents Formuland-style overpricing and separates high-margin corrections from true negative-margin carve-outs.</p>
-    </div>
-
-    <div class="init">
-      <div class="target">Target bucket — Product churn events</div>
-      <h3><span class="init-num">2.</span>AM hires covering 95% of revenue relationships</h3>
-      <p>Self Serve is 43 of 75 product-churn events and only 16.2% of product-churn dollars. AM coverage is the unit-churn lever.</p>
-    </div>
-
-    <div class="init">
-      <div class="target">Target bucket — Post-Onboarding risk</div>
-      <h3><span class="init-num">3.</span>Winning-zone framework for PAs with Gabe Miller</h3>
-      <p>Post-Onboarding is $1,136,442 of operating churn. The framework gives PAs earlier signal before drift becomes churn.</p>
-    </div>
-
-    <div class="init">
-      <div class="target">Target bucket — Pricing & Value</div>
-      <h3><span class="init-num">4.</span>New mid-market and SMB SE playbooks</h3>
-      <p>Addresses undersold value, weak product fit, and deals that need stricter guardrails before close.</p>
-    </div>
-
-    <div class="init">
-      <div class="target">Target bucket — Pricing & Value</div>
-      <h3><span class="init-num">5.</span>Sales training with Tyler Welch</h3>
-      <p>Upstream training for AEs and SEs on well-run deals, value narrative, and economics before handoff.</p>
-    </div>
-
-    <div class="init unowned">
-      <div class="target">Target bucket — Product · No current owner</div>
-      <h3><span class="init-num">6.</span>Integrations Specialist — approve</h3>
-      <p>Product / Technical is $300,423, 19.3% of operating churn. This is the major bucket without a named operational owner outside engineering.</p>
     </div>
 
     <!-- FOOTER -->
